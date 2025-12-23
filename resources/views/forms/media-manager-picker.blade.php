@@ -6,7 +6,7 @@
 
     if ($state) {
         $uuids = is_array($state) ? $state : [$state];
-        $media = \TomatoPHP\FilamentMediaManager\Models\Media::whereIn('uuid', $uuids)->get()->keyBy('uuid');
+        $media = \TomatoPHP\FilamentMediaManager\Models\Media::withoutGlobalScopes()->whereIn('uuid', $uuids)->get()->keyBy('uuid');
 
         // Order media items according to state array order
         foreach ($uuids as $uuid) {
